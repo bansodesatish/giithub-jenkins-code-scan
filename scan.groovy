@@ -35,9 +35,11 @@ pipeline {
                     sh '''
                     echo "pipeline working...."
                     which python3
+                    which pip3
+                    which pipenv
                     '''
                     
-                synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.source.path="${WORKSPACE}/lambda/pokemon" --detect.detector.search.depth=0 --detect.python.python3=true  --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=DEBUG --logging.level.com.synopsys.integration=DEBUG --detect.cleanup=false', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+                synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.source.path="${WORKSPACE}/lambda/pokemon" --detect.detector.search.depth=0 --detect.python.python3=true  --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=DEBUG ', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
                     
                 }  
             }
@@ -45,4 +47,4 @@ pipeline {
     }
 }
 // --detect.accuracy.required=NONE
-// --detect.python.python3=true
+// --detect.python.python3=true  --detect.cleanup=false --logging.level.com.synopsys.integration=DEBUG
