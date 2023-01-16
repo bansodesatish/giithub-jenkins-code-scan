@@ -34,6 +34,9 @@ pipeline {
                 container('blackduck') {
                     sh '''
                     echo "pipeline working...."
+                    which python3
+                    which pip
+                    which python
                     '''
                     
                 synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.source.path="${WORKSPACE}/lambda/pokemon" --detect.detector.search.depth=0 --detect.python.python3=true --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=DEBUG --logging.level.com.synopsys.integration=DEBUG --detect.cleanup=false', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
