@@ -23,7 +23,7 @@ pipeline {
             '''
         }
     }
-
+    stages {
         stage('Build image and push it to dev') {
             steps {
                 container('chaos-builder') {
