@@ -41,7 +41,7 @@ pipeline {
                     python3 -m pip install -r ${WORKSPACE}/requirements.txt
                     '''
                     
-                synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.source.path="${WORKSPACE}/lambda/pokemon" --detect.detector.search.depth=0 --detect.python.python3=true --detect.python.path=/usr/bin/python3 --detect.pip.path=/usr/local/bin/pip3   --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=DEBUG  --detect.cleanup=true --logging.level.com.synopsys.integration=DEBUG', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+                synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.source.path="${WORKSPACE}/lambda/pokemon" --detect.detector.search.depth=0 --detect.python.python3=true --detect.python.path=/usr/bin/python3 --detect.pip.path=/usr/local/bin/pip3   --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=TRACE  --detect.cleanup=true --logging.level.com.synopsys.integration=TRACE', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
                     
                 }  
             }
