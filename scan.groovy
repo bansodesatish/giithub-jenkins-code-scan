@@ -32,6 +32,7 @@ pipeline {
                     '''
                     
                 }  
+                synopsys_detect detectProperties: '', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
             }
         }
     }
