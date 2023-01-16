@@ -16,6 +16,11 @@ pipeline {
                   volumeMounts:
                   - name: docker
                     mountPath: /var/run/docker.sock
+                - name: blackduck
+                  image: openkbs/jdk11-mvn-py3:v1.2.1
+                  cammand: 
+                  - cat
+                  tty: true
                 volumes:
                 - name: docker
                   hostPath:
@@ -26,7 +31,7 @@ pipeline {
     stages {
         stage('Build image and push it to dev') {
             steps {
-                container('chaos-builder') {
+                container('blackduck') {
                     sh '''
                     echo "pipeline working...."
                     '''
