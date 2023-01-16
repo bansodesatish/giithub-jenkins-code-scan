@@ -17,7 +17,7 @@ pipeline {
                   - name: docker
                     mountPath: /var/run/docker.sock
                 - name: blackduck
-                  image: bansodesatish/blackduck
+                  image: bansodesatish/blackdock:amazonrhel
                   cammand: 
                   - cat
                   tty: true
