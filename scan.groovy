@@ -17,7 +17,7 @@ pipeline {
                   - name: docker
                     mountPath: /var/run/docker.sock
                 - name: blackduck
-                  image: korekontrol/ubuntu-java-python3
+                  image: bansodesatish/blackduck
                   cammand: 
                   - cat
                   tty: true
