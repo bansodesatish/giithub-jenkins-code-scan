@@ -31,7 +31,7 @@ pipeline {
                     echo "pipeline working...."
                     '''
                     
-                synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.accuracy.required=NONE --detect.spurce.path="${WORKSPACE}/lambda" --detect.pipi.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN"', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+                synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.accuracy.required=NONE --detect.spurce.path="${WORKSPACE}/lambda" --detect.pipi.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=TRACE,DEBUG,INFO,WARN,ERROR,FATAL --logging.level.com.synopsys.integration=TRACE,DEBUG,INFO,WARN,ERROR,FATAL --detect.cleanup=false', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
                     
                 }  
             }
