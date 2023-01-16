@@ -31,12 +31,9 @@ pipeline {
                     echo "pipeline working...."
                     '''
                     
-                }  
-                sh '''
-                    curl -h
-                '''
-                setupBlackDuckEnvironment()
                 synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.detector.buildless=true --detect.spurce.path="${WORKSPACE}/lambda" --detect.pipi.requirements.path="${WORKSPACE}/requirements.txt"', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+                    
+                }  
             }
         }
     }
