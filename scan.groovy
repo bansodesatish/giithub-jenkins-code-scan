@@ -42,7 +42,24 @@ pipeline {
                         env.PYTHON_3_PATH=sh (returnStdout: true, script: 'which python3').trim()
                         env.PIP_3_PATH=sh (returnStdout: true, script: 'which pip3').trim()
                     }
-                synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.source.path="${WORKSPACE}/lambda/pokemon" --detect.detector.search.depth=0 --detect.python.python3=true --detect.python.path=${PYTHON_3_PATH} --detect.pip.path=${PIP_3_PATH}  --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=TRACE  --detect.cleanup=true --logging.level.com.synopsys.integration=TRACE', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+                    synopsys_detect detectProperties: '''
+                    --blackduck.offline.mode=true \
+                    --detect.source.path="${WORKSPACE}/lambda/pokemon" \
+                    --detect.detector.search.depth=0 --detect.python.python3=true \
+                    --detect.python.path=${PYTHON_3_PATH} \
+                    --detect.pip.path=${PIP_3_PATH}  \
+                    --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" \
+                    --detect.tools.excluded="SIGNATURE_SCAN" \
+                    --logging.level.detect=TRACE  \
+                    --detect.cleanup=true \
+                    --logging.level.com.synopsys.integration=TRACE \
+                    --detect.bdio.output.path="${WORKSPACE}" \
+                    ---detect.bom.aggregate.name="${BUILD_NUMBER}_bom" \
+                    '''', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+
+                    sh '''
+                        cat ${WORKSPACE}/${BUILD_NUMBER}_bom
+                    '''
                     
                 }  
             }
