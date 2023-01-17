@@ -30,10 +30,10 @@ pipeline {
     }
     environment {
         BLACKDUCK_PROJECT_APPLICATION_NAME="123489"
-        BLACKDUCK_PROJECT_VERSION_NAME=${BUILD_NUBMER}
+        BLACKDUCK_PROJECT_VERSION_NAME="${BUILD_NUBMER}"
         BLACKDUCK_PROJECT_TAGS="internal"
         BLACKDUCK_SOURCE_PATH="${WORKSPACE}/lambdas/pokemon"
-        BLACKDUCK_SEARCH_DEPTH=0
+        BLACKDUCK_SEARCH_DEPTH="0"
         BLACKDUCK_PIP_REQUIREMENTS_PATH="${WORKSPACE}/lambdas/requirements.txt"
     }
     stages {
