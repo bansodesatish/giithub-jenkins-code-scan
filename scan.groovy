@@ -45,7 +45,7 @@ pipeline {
                     which python3
                     which pip3
                     which pipenv
-                    python3 -m pip install -r $env.BLACKDUCK_PIP_REQUIREMENTS_PATH
+                    python3 -m pip install -r ${env.BLACKDUCK_PIP_REQUIREMENTS_PATH}
                     '''
                     script{
                         env.PYTHON_3_PATH=sh (returnStdout: true, script: 'which python3').trim()
