@@ -34,12 +34,12 @@ pipeline {
                 container('blackduck') {
                     sh '''
                     echo "pipeline working...."
-                    which python3
-                    which pip3
-                    which pipenv
+                    PYTHON_3_PATH=$(which python3)
+                    PIP_3_PATH=$(which pip3)
+                    PIPENV_PATH=$(which pipenv)
                     '''
                     
-                synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.source.path="${WORKSPACE}/lambda/pokemon" --detect.detector.search.depth=0 --detect.python.python3=true --detect.python.path=/usr/bin/python3 --detect.pip.path=/usr/local/bin/pip3   --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=TRACE  --detect.cleanup=true --logging.level.com.synopsys.integration=TRACE', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+                synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.source.path="${WORKSPACE}/lambda/pokemon" --detect.detector.search.depth=0 --detect.python.python3=true --detect.python.path="${PYTHON_3_PATH}" --detect.pip.path="${PIP_3_PATH}"   --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=TRACE  --detect.cleanup=true --logging.level.com.synopsys.integration=TRACE', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
                     
                 }  
             }
