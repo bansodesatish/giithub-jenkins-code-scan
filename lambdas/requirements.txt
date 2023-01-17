@@ -1,4 +1,3 @@
-Jinja2==2.11.1
 boto
 boto3
 botocore

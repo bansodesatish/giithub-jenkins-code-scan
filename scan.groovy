@@ -70,7 +70,7 @@ pipeline {
                     --detect.python.python3=true \
                     --detect.python.path=${PYTHON_3_PATH} \
                     --detect.pip.path=${PIP_3_PATH}  \
-                    --detect.pip.requirements.path="${BLACKDUCK_PIP_REQUIREMENTS_PATH}" \
+                    --detect.pip.requirements.path="${BLACKDUCK_PIP_REQUIREMENTS_PATH},${WORKSPACE}/layers/hello_world_layers/requirements.txt" \
                     --detect.tools.excluded="${BLACKDUCK_TOOLS_EXCLUDED}" \
                     --logging.level.detect=${BLACKDUCK_LEVEL_DETECT}  \
                     --logging.level.com.synopsys.integration=${BLACKDUCK_LEVEL_COM_SYNOPSIS_INTEGRATION} \
