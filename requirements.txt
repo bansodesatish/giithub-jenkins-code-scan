@@ -1,1 +1,12 @@
 Jinja2==2.11.1
+boto
+boto3
+botocore
+mock
+moto
+mongomock
+pytest 
+pytest-cov
+pytest-mock
+pymongo
+beautifulsoup4>=4.11.1

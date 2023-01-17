@@ -44,6 +44,9 @@ pipeline {
                     }
                     synopsys_detect detectProperties: '''
                     --blackduck.offline.mode=true \
+                    --detect.project.application.id=462841 \
+                    --detect.project.version.name="${BUILD_NUMBER}" \
+                    --detect.project.tags=internal,contractores,notdistributed,bottomzone,middlezone,nonmodifiedoss,mexux \
                     --detect.source.path="${WORKSPACE}/lambda/pokemon" \
                     --detect.detector.search.depth=0 --detect.python.python3=true \
                     --detect.python.path=${PYTHON_3_PATH} \
@@ -56,10 +59,6 @@ pipeline {
                     --detect.bdio.output.path="${WORKSPACE}" \
                     ---detect.bom.aggregate.name="${BUILD_NUMBER}_bom" \
                     ''', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
-
-                    sh '''
-                        cat ${WORKSPACE}/${BUILD_NUMBER}_bom.bdio
-                    '''
                     
                 }  
             }
