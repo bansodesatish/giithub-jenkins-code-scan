@@ -38,9 +38,10 @@ pipeline {
                     which pip3
                     which pipenv
                     '''
-                    PYTHON_3_PATH=sh (returnStdout: true, script: 'which python3').trim()
-                    PIP_3_PATH=sh (returnStdout: true, script: 'which pip3').trim()
-                    
+                    script{
+                        PYTHON_3_PATH=sh (returnStdout: true, script: 'which python3').trim()
+                        PIP_3_PATH=sh (returnStdout: true, script: 'which pip3').trim()
+                    }
                 synopsys_detect detectProperties: '--blackduck.offline.mode=true --detect.source.path="${WORKSPACE}/lambda/pokemon" --detect.detector.search.depth=0 --detect.python.python3=true --detect.python.path=${PYTHON_3_PATH} --detect.pip.path=${PIP_3_PATH}   --detect.pip.requirements.path="${WORKSPACE}/requirements.txt" --detect.tools.excluded="SIGNATURE_SCAN" --logging.level.detect=TRACE  --detect.cleanup=true --logging.level.com.synopsys.integration=TRACE', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
                     
                 }  
