@@ -55,7 +55,7 @@ pipeline {
                     --logging.level.com.synopsys.integration=TRACE \
                     --detect.bdio.output.path="${WORKSPACE}" \
                     ---detect.bom.aggregate.name="${BUILD_NUMBER}_bom" \
-                    '''', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
+                    ''', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
 
                     sh '''
                         cat ${WORKSPACE}/${BUILD_NUMBER}_bom
