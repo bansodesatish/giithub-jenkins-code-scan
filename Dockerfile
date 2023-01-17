@@ -10,5 +10,4 @@ RUN apt-get update && \
 RUN pip3 install --upgrade pip requests pipenv
 
 ADD supervisord.conf /etc/supervisor/supervisord.conf
-RUN adduser --system --group --no-create-home backduck 
-USER backduck
+
