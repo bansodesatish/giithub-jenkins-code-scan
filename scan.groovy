@@ -45,7 +45,7 @@ pipeline {
                     which python3
                     which pip3
                     which pipenv
-                    python3 -m pip install -r ${env.BLACKDUCK_PIP_REQUIREMENTS_PATH}
+                    python3 -m pip install -r ${BLACKDUCK_PIP_REQUIREMENTS_PATH}
                     '''
                     script{
                         env.PYTHON_3_PATH=sh (returnStdout: true, script: 'which python3').trim()
@@ -53,15 +53,15 @@ pipeline {
                     }
                     synopsys_detect detectProperties: '''
                     --blackduck.offline.mode=true \
-                    --detect.project.application.id=${env.BLACKDUCK_PROJECT_APPLICATION_NAME} \
-                    --detect.project.version.name="${env.BLACKDUCK_PROJECT_VERSION_NAME}" \
-                    --detect.project.tags=${env.BLACKDUCK_PROJECT_TAGS} \
-                    --detect.source.path="${env.BLACKDUCK_SOURCE_PATH}" \
-                    --detect.detector.search.depth=${env.BLACKDUCK_SEARCH_DEPTH} \
+                    --detect.project.application.id=${BLACKDUCK_PROJECT_APPLICATION_NAME} \
+                    --detect.project.version.name="${BLACKDUCK_PROJECT_VERSION_NAME}" \
+                    --detect.project.tags=${BLACKDUCK_PROJECT_TAGS} \
+                    --detect.source.path="${BLACKDUCK_SOURCE_PATH}" \
+                    --detect.detector.search.depth=${BLACKDUCK_SEARCH_DEPTH} \
                     --detect.python.python3=true \
                     --detect.python.path=${PYTHON_3_PATH} \
                     --detect.pip.path=${PIP_3_PATH}  \
-                    --detect.pip.requirements.path="${env.BLACKDUCK_PIP_REQUIREMENTS_PATH}" \
+                    --detect.pip.requirements.path="${BLACKDUCK_PIP_REQUIREMENTS_PATH}" \
                     --detect.tools.excluded="SIGNATURE_SCAN" \
                     --logging.level.detect=TRACE  \
                     --logging.level.com.synopsys.integration=TRACE \
