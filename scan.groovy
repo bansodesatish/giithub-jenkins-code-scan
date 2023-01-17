@@ -36,14 +36,14 @@ pipeline {
         BLACKDUCK_PROJECT_TAGS="internal" // Project Tags: A comma-separated list of tags to add to the project.
         BLACKDUCK_SOURCE_PATH="${WORKSPACE}" // /lambdas/pokemon" // Source Path: The path to the project directory to inspect.
         BLACKDUCK_SEARCH_DEPTH="3" // Detector Search Depth: Depth of subdirectories within the source directory to which Detect will search for files that indicate whether a detector applies.
+        BLACKDUCK_DETECTOR_SEARCH_CONTINUE="true" //If true, the bom tool search will continue to look for nested bom tools of the same type to the maximum search depth, see the detailed help for more information. If true, Detect will find Maven projects that are in subdirectories of a Maven project and Gradle projects that are in subdirectories of Gradle projects, etc. If false, Detect will only find bom tools in subdirectories of a project if they are of a different type such as an Npm project in a subdirectory of a Gradle project.
+        BLACKDUCK_DETECTOR_SEARCH_EXCLUSION_DEFAULT="true" // If true, these directories will be excluded from the detector search: bin, build, .git, .gradle, node_modules, out, packages, target.
         BLACKDUCK_PIP_REQUIREMENTS_PATH="${WORKSPACE}/lambdas/requirements.txt" // PIP Requirements Path: A comma-separated list of paths to requirements.txt files.
         BLACKDUCK_TOOLS_EXCLUDED="SIGNATURE_SCAN" // Acceptable Values: BAZEL, DETECTOR, DOCKER, SIGNATURE_SCAN, BINARY_SCAN, POLARIS, NONE, ALL
         BLACKDUCK_LEVEL_DETECT="DEBUG" // Acceptable Values: TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
         BLACKDUCK_LEVEL_COM_SYNOPSIS_INTEGRATION="DEBUG" // Acceptable Values: TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
-        BLACKDUCK_BDIO_AGGREGATE_NAME="${BUILD_NUMBER}_bom" // Aggregate BDIO File Name: If set, this will aggregate all the BOMs to create a single BDIO file with the name provided.
-        BLACKDUCK_DETECTOR_SEARCH_CONTINUE="true" //If true, the bom tool search will continue to look for nested bom tools of the same type to the maximum search depth, see the detailed help for more information. If true, Detect will find Maven projects that are in subdirectories of a Maven project and Gradle projects that are in subdirectories of Gradle projects, etc. If false, Detect will only find bom tools in subdirectories of a project if they are of a different type such as an Npm project in a subdirectory of a Gradle project.
-        BLACKDUCK_DETECTOR_SEARCH_EXCLUSION_DEFAULT="true" // If true, these directories will be excluded from the detector search: bin, build, .git, .gradle, node_modules, out, packages, target.
         BLACKDUCK_BDIO_OUTPUT_PATH="${WORKSPACE}" // BDIO Output Directory: The path to the output directory for all BDIO files.
+        BLACKDUCK_BDIO_AGGREGATE_NAME="${BUILD_NUMBER}_bom" // Aggregate BDIO File Name: If set, this will aggregate all the BOMs to create a single BDIO file with the name provided.
     }
     stages {
         stage('Build image and push it to dev') {
