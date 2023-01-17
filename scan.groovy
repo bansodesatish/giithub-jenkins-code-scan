@@ -58,7 +58,7 @@ pipeline {
                     ''', downloadStrategyOverride: [$class: 'ScriptOrJarDownloadStrategy']
 
                     sh '''
-                        cat ${WORKSPACE}/${BUILD_NUMBER}_bom
+                        cat ${WORKSPACE}/${BUILD_NUMBER}_bom.bdio
                     '''
                     
                 }  
